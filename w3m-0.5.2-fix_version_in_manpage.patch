@@ -1,0 +1,11 @@
+--- doc/w3m.1-old	2002-11-12 18:06:30.000000000 +0530
++++ doc/w3m.1	2010-08-02 10:19:11.000000000 +0530
+@@ -171,7 +171,7 @@ $ cat foo.html | w3m -dump -T text/html 
+ This is the
+ .I
+ w3m
+-0.2.1 Release.
++0.5.2 Release.
+ .PP
+ Additional information about
+ .I

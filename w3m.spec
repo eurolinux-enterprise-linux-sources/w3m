@@ -5,7 +5,7 @@
 
 Name:     w3m
 Version:  0.5.2
-Release:  16%{?dist}
+Release:  19%{?dist}
 License:  MIT
 URL:      http://w3m.sourceforge.net/
 BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -34,8 +34,9 @@ Source14:  filter-requires-w3m.sh
 Patch15:  w3m-0.4.1-helpcharset.patch
 Patch21:  w3m-0.5.1-gcc4.patch
 Patch24:  w3m-0.5.2-multilib.patch
-Patch25:        w3m-0.5.2-nulcn-CVE-2010-2074.patch
-Patch26:        w3m-0.5.2-ssl_verify_server_on-2010-2074.patch
+Patch25:  w3m-0.5.2-nulcn-CVE-2010-2074.patch
+Patch26:  w3m-0.5.2-ssl_verify_server_on-2010-2074.patch
+Patch27:  w3m-0.5.2-fix_version_in_manpage.patch
 
 Summary:  A pager with Web browsing abilities
 Group:    Applications/Internet
@@ -57,7 +58,7 @@ w3m-img package as well.
 %package img
 Summary: A helper program to display the inline images for w3m
 Group: Applications/Internet
-Requires: ImageMagick
+Requires: ImageMagick >= 6.7.2.7
 Requires: w3m = %{version}-%{release}
 
 %description img
@@ -75,6 +76,7 @@ chmod 755 doc-jp
 %patch24 -p1
 %patch25 -p1
 %patch26 -p1
+%patch27 -p0
 
 %if %{with_utf8}
 pushd doc-jp
@@ -144,6 +146,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_libexecdir}/w3m/w3mimgdisplay
 
 %changelog
+* Thu Feb 19 2015 Jan Horak <jhorak@redhat.com> - 0.5.2-19
+- Rebuild due to rebase of ImageMagick
+
+* Tue Jan 18 2011 Parag <pnemade AT redhat.com> - 0.5.1-17
+- Resolves:rh#615873 - Man w3m is stating incorrect program version
+
 * Thu Jun 17 2010 Parag <pnemade AT redhat.com> - 0.5.2-16
 - Resolves:rh#604863-CVE-2010-2074 w3m: doesn't handle NULL in Common Name properly
 
